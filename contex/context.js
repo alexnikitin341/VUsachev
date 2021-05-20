@@ -22,7 +22,7 @@ const performsInitial = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     name: "холодная сердцем",
     src: "https://upload.wikimedia.org/wikipedia/ru/d/d6/Beauty_and_the_Beast_2017_poster.jpg",
     genre: "сказка",
