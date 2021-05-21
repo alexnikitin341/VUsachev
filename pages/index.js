@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFormContext } from "../contex/context";
 import styles from "../styles/Home.module.css";
+import axios from 'axios'
 
 const Home = () => {
   const { user, setUser, performs } = useFormContext();
   const router = useRouter();
+
+  axios.get('http://localhost:9999/performs').then(response => {
+  console.log(response.data);
+});
 
   return (
     <div className={styles.container}>
