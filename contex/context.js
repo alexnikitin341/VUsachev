@@ -41,7 +41,6 @@ const performsInitial = [
 
 const FormProvider = ({ children }) => {
   const [user, setUser] = useState();
-  const [performs, setPerforms] = useState();
 
   const getState = () => {
     const localUser = localStorage.getItem("user");
@@ -51,8 +50,6 @@ const FormProvider = ({ children }) => {
     } else {
       setUser(userInitial);
     }
-
-    localStorage.setItem("bgcolor", "red");
   };
 
   useEffect(() => {
@@ -68,8 +65,6 @@ const FormProvider = ({ children }) => {
       value={{
         user,
         setUser,
-        performs,
-        setPerforms,
       }}
     >
       {children}
