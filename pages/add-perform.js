@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { useFormContext } from "../contex/context";
 import styles from "../styles/AddPerform.module.css";
+import axios from "axios";
 
 const AddPerform = () => {
   const router = useRouter();
 
-  const [inputPerform, setInputPerform] = useState({scenes:[]});
-  const [newScene, setNewScene] = useState("");
+  const [inputPerform, setInputPerform] = useState({ scenes: [] });
+  const [newScene, setNewScene] = useState({ name: "", description: "" });
 
-  const { user, setPerforms } = useFormContext();
+  const { user } = useFormContext();
 
   const changeState = (e) => {
     setInputPerform((previous) => ({
@@ -22,26 +23,30 @@ const AddPerform = () => {
     if (user.role !== "admin") {
       return;
     }
-    setPerforms((previous) => [
-      ...previous,
-      { ...inputPerform, id: previous.length + 2 },
-    ]);
-    router.push(`/`);
+
+    axios
+      .post("http://localhost:9999/perform", { ...inputPerform })
+      .then((response) => {
+        console.log("perform", response.data);
+        router.push(`/`);
+      });
   };
 
   const addNewScene = () => {
-    if (newScene) {
+    if (newScene.name && newScene.description) {
       setInputPerform((perform) => ({
         ...inputPerform,
         scenes: [
           ...perform.scenes,
           {
             id: perform.scenes.length + 2,
-            name: newScene,
             active: false,
+            ...newScene,
           },
         ],
       }));
+
+      setNewScene({});
     }
   };
 
@@ -89,11 +94,25 @@ const AddPerform = () => {
       {inputPerform?.scenes?.map((scene) => (
         <div>
           {scene.name} <button>удалить</button>
+          {scene.description} <button>удалить</button>
         </div>
       ))}
 
       <div>
-        <input value={newScene} onChange={(e) => setNewScene(e.target.value)} />
+        <input
+          value={newScene.name}
+          placeholder="name"
+          onChange={(e) =>
+            setNewScene((prev) => ({ ...prev, name: e.target.value }))
+          }
+        />
+        <textarea
+          placeholder="description"
+          value={newScene.description}
+          onChange={(e) =>
+            setNewScene((prev) => ({ ...prev, description: e.target.value }))
+          }
+        />
         <button onClick={() => addNewScene()}>добавить сцену</button>
       </div>
 

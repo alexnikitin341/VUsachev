@@ -38,25 +38,20 @@ const performsInitial = [
     ],
   },
 ];
+
 const FormProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [performs, setPerforms] = useState();
 
   const getState = () => {
     const localUser = localStorage.getItem("user");
-    const localPerforms = localStorage.getItem("performs");
-    console.log('---localUser', !!localUser)
+
     if (localUser) {
       setUser(JSON.parse(localUser));
     } else {
       setUser(userInitial);
     }
 
-    if (localPerforms) {
-      setPerforms(JSON.parse(localPerforms));
-    } else {
-      setPerforms(performsInitial);
-    }
     localStorage.setItem("bgcolor", "red");
   };
 
@@ -67,10 +62,6 @@ const FormProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
-
-  useEffect(() => {
-    localStorage.setItem("performs", JSON.stringify(performs));
-  }, [performs]);
 
   return (
     <FormContext.Provider

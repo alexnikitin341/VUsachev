@@ -2,25 +2,33 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFormContext } from "../contex/context";
 import styles from "../styles/Home.module.css";
-import axios from 'axios'
+import axios from "axios";
 
 const Home = () => {
-  const { user, setUser, performs } = useFormContext();
+  const { user } = useFormContext();
   const router = useRouter();
 
-  axios.get('http://localhost:9999/performs').then(response => {
-  console.log(response.data);
-});
+  const [performs, setPerforms] = useState();
 
+  const getPerforms = () => {
+    axios.get("http://localhost:9999/performs").then((response) => {
+      setPerforms(response.data);
+      console.log("performs", response.data);
+    });
+  };
+
+  useEffect(() => {
+    getPerforms();
+  }, []);
   return (
     <div className={styles.container}>
       {performs &&
         performs.map((perform) => (
           <div
-            key={perform.id}
+            key={perform._id}
             className={styles.perform}
             onClick={() => {
-              router.push(`./perform/${perform.id}`);
+              router.push(`./perform/${perform._id}`);
             }}
           >
             {perform.name}

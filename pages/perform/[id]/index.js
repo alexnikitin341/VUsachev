@@ -1,22 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFormContext } from "../../../contex/context";
 import styles from "../../../styles/Perform.module.css";
+import axios from "axios";
 
 const Perform = () => {
   const router = useRouter();
   const { id } = router.query;
+  const [perform, setPerform] = useState();
 
-  const { user, performs, setPerforms } = useFormContext();
-  
+  const { user } = useFormContext();
 
-  const perform = performs.find((perform) => perform.id == id);
-  const dedeletePerform = () => {
-    router.push("/");
-    setPerforms((previous) =>
-      [...previous].filter((perform) => perform.id != id)
-    );
+  const getPerform = () => {
+    axios.get(`http://localhost:9999/perform/${id}`).then((response) => {
+      setPerform(response.data);
+      console.log("perform", response.data);
+    });
   };
+
+  const dedeletePerform = () => {
+    axios.delete(`http://localhost:9999/perform/${id}`).then((response) => {
+      console.log("perform", response.data);
+      router.push("/");
+    });
+  };
+
+  useEffect(() => {
+    getPerform();
+  }, [id]);
 
   return (
     <div className={styles.container}>
