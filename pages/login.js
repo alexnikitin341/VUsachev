@@ -22,6 +22,7 @@ const Login = () => {
     }
     return setError("неверный логин или пароль");
   };
+  
   return (
     <div className={styles.container}>
       <div className={styles.box}>
@@ -30,15 +31,15 @@ const Login = () => {
           className={styles.input}
           value={login}
           onChange={(e) => setLogin(e.target.value)}
-          placeholder="login"
+          placeholder="Логин"
         />
         <input
           className={styles.input}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="password"
+          placeholder="Пароль"
         />
-        <button onClick={handleClick} className={styles.input}>
+        <button onClick={handleClick} className={styles.button}>
           Войти
         </button>
       </div>
