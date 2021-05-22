@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+import { useDropzone } from "react-dropzone";
 import styles from "../styles/ChoosePerform.module.css";
 
 const ChoosePerform = ({
@@ -8,7 +10,6 @@ const ChoosePerform = ({
   changeState,
   saveNewPerform,
   addNewScene,
-  saveImg,
   handleBackButton,
 }) => {
   const deleteScene = (sceneId) => {
@@ -17,6 +18,26 @@ const ChoosePerform = ({
       scenes: [...perform.scenes].filter((scene) => sceneId !== scene.id),
     }));
   };
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  const onDrop = useCallback(async (acceptedFiles) => {
+    const img = await toBase64(acceptedFiles[0]);
+
+    setInputPerform((perform) => ({
+      ...perform,
+      src: img,
+    }));
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
   return (
     <div className={styles.container}>
       <div className={styles.box}>
@@ -28,13 +49,14 @@ const ChoosePerform = ({
         />
 
         <div className={styles.img}>
-          <img
-            value={inputPerform?.img}
-            style={{ width: "100%" }}
-            src={inputPerform?.src}
-          />
-
-          <input onChange={saveImg} accept="image/*" type="file" />
+          <div {...getRootProps()} className={styles.dropZone}>
+            <input {...getInputProps()} />
+            {inputPerform?.src ? (
+              <img style={{ width: "100%" }} src={inputPerform?.src} />
+            ) : (
+              <div>Выберите изображение</div>
+            )}
+          </div>
         </div>
 
         <input

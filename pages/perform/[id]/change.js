@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useFormContext } from "../../../contex/context";
-import styles from "../../../styles/ChangePerform.module.css";
 import axios from "axios";
 import ChoosePerform from "../../../components/choosePerform";
 
@@ -81,14 +80,13 @@ const ChangePerform = () => {
 
   return (
     <ChoosePerform
-    setInputPerform={setInputPerform}
+      setInputPerform={setInputPerform}
       inputPerform={inputPerform}
       newScene={newScene}
       setNewScene={setNewScene}
       changeState={changeState}
       saveNewPerform={saveNewPerform}
       addNewScene={addNewScene}
-      saveImg={saveImg}
       handleBackButton={handleBackButton}
     />
   );

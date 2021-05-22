@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-// import imageToBase64 from "image-to-base64";
 import { useFormContext } from "../contex/context";
-import styles from "../styles/AddPerform.module.css";
 import ChoosePerform from "../components/choosePerform";
 
 const AddPerform = () => {
@@ -65,16 +63,6 @@ const AddPerform = () => {
     }
   };
 
-  const saveImg = (e) => {
-    // imageToBase64(e.target.files)
-    //   .then((response) => {
-    //     setInputPerform((perform) => ({ ...perform, src: response })); // "cGF0aC90by9maWxlLmpwZw=="
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-  };
-
   const handleBackButton = () => {
     router.push(`/`);
   };
@@ -88,7 +76,6 @@ const AddPerform = () => {
       changeState={changeState}
       saveNewPerform={saveNewPerform}
       addNewScene={addNewScene}
-      saveImg={saveImg}
       handleBackButton={handleBackButton}
     />
   );
