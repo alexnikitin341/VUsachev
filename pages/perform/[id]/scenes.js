@@ -60,6 +60,7 @@ const Scenes = () => {
       <div className={styles.name}>{perform?.name}</div>
       {perform?.scenes.map((scene) => (
         <Scene
+          key={scene.id}
           scene={scene}
           selctSceneId={selctSceneId}
           setSelctSceneId={setSelctSceneId}

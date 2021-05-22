@@ -20,7 +20,7 @@ const Scene = ({ scene, selctSceneId, setSelctSceneId, changeActiveScene }) => {
       <div>{scene.name}</div>
       {scene.id === selctSceneId && (
         <div>
-          <hr />
+          {scene.id !== 1 && scene.id !== 999 && <hr />}
           {scene.description}
         </div>
       )}

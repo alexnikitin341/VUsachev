@@ -1,6 +1,7 @@
 import styles from "../styles/ChoosePerform.module.css";
 
 const ChoosePerform = ({
+  setInputPerform,
   inputPerform,
   newScene,
   setNewScene,
@@ -10,6 +11,12 @@ const ChoosePerform = ({
   saveImg,
   handleBackButton,
 }) => {
+  const deleteScene = (sceneId) => {
+    setInputPerform((perform) => ({
+      ...inputPerform,
+      scenes: [...perform.scenes].filter((scene) => sceneId !== scene.id),
+    }));
+  };
   return (
     <div className={styles.container}>
       <div className={styles.box}>
@@ -59,11 +66,22 @@ const ChoosePerform = ({
         />
 
         {inputPerform?.scenes?.map((scene) => (
-          <div className={styles.containerScene}>
+          <div key={scene.id} className={styles.containerScene}>
             {scene.name}
-            <hr style={{ width: "100%" }} />
+            {scene.id !== 1 && scene.id !== 999 && (
+              <hr style={{ width: "100%" }} />
+            )}
             {scene.description}
-            <button className={styles.deleteButton}>Удалить</button>
+            {scene.id !== 1 && scene.id !== 999 && (
+              <button
+                onClick={() => {
+                  deleteScene(scene.id);
+                }}
+                className={styles.deleteButton}
+              >
+                Удалить сцену
+              </button>
+            )}
           </div>
         ))}
 
