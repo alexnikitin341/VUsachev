@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useFormContext } from "../../../contex/context";
 import styles from "../../../styles/Scenes.module.css";
 import axios from "axios";
-import useOutsideClick from "../../../hooks/useOutsideClick";
+import Scene from "../../../components/scene";
 
 const Scenes = () => {
   const router = useRouter();
@@ -11,8 +11,6 @@ const Scenes = () => {
   const { user } = useFormContext();
   const [perform, setPerform] = useState();
   const [selctSceneId, setSelctSceneId] = useState();
-  const ref = useRef();
-  useOutsideClick(ref, () => setSelctSceneId());
 
   const changeActiveScene = (sceneId) => {
     setSelctSceneId(sceneId);
@@ -34,16 +32,21 @@ const Scenes = () => {
 
     axios
       .put(`http://localhost:9999/perform/${id}`, { ...newPerform })
-      .then((response) => {
-        console.log("perform", response.data);
+      .then((response) => {})
+      .catch((error) => {
+        console.log(error);
       });
   };
 
   const getPerform = () => {
-    axios.get(`http://localhost:9999/perform/${id}`).then((response) => {
-      setPerform(response.data);
-      console.log("perform", response.data);
-    });
+    axios
+      .get(`http://localhost:9999/perform/${id}`)
+      .then((response) => {
+        setPerform(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -56,15 +59,12 @@ const Scenes = () => {
     <div className={styles.container}>
       <div>{perform?.name}</div>
       {perform?.scenes.map((scene) => (
-        <div
-          key={scene.id}
-          ref={ref}
-          style={{ background: scene.active && "green" }}
-          onClick={() => changeActiveScene(scene.id)}
-        >
-          <div>{scene.name}</div>
-          {scene.id === selctSceneId && <div>{scene.description}</div>}
-        </div>
+        <Scene
+          scene={scene}
+          selctSceneId={selctSceneId}
+          setSelctSceneId={setSelctSceneId}
+          changeActiveScene={changeActiveScene}
+        />
       ))}
 
       <button

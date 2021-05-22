@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+// import imageToBase64 from "image-to-base64";
 import { useFormContext } from "../contex/context";
 import styles from "../styles/AddPerform.module.css";
-import axios from "axios";
 
 const AddPerform = () => {
   const router = useRouter();
@@ -29,6 +30,9 @@ const AddPerform = () => {
       .then((response) => {
         console.log("perform", response.data);
         router.push(`/`);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -50,6 +54,16 @@ const AddPerform = () => {
     }
   };
 
+  const saveImg = (e) => {
+    // imageToBase64(e.target.files)
+    //   .then((response) => {
+    //     setInputPerform((perform) => ({ ...perform, src: response })); // "cGF0aC90by9maWxlLmpwZw=="
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+  };
+
   return (
     <div className={styles.container}>
       <input
@@ -64,6 +78,8 @@ const AddPerform = () => {
           style={{ widows: "100%", height: "100px" }}
           src={inputPerform?.src}
         />
+
+        <input onChange={saveImg} accept="image/*" type="file" />
       </div>
 
       <input

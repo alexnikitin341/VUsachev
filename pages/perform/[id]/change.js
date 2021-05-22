@@ -13,10 +13,15 @@ const ChangePerform = () => {
   const { user } = useFormContext();
 
   const getPerform = () => {
-    axios.get(`http://localhost:9999/perform/${id}`).then((response) => {
-      setInputPerform(response.data);
-      console.log("perform", response.data);
-    });
+    axios
+      .get(`http://localhost:9999/perform/${id}`)
+      .then((response) => {
+        setInputPerform(response.data);
+        console.log("perform", response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -36,7 +41,7 @@ const ChangePerform = () => {
     if (user.role !== "admin") {
       return;
     }
-    
+
     const newPerform = { ...inputPerform };
     delete newPerform._id;
     console.log("---newPerform", newPerform);
@@ -44,6 +49,9 @@ const ChangePerform = () => {
       .put(`http://localhost:9999/perform/${id}`, { ...newPerform })
       .then((response) => {
         console.log("perform", response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 

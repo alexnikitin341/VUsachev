@@ -12,21 +12,31 @@ const Perform = () => {
   const { user } = useFormContext();
 
   const getPerform = () => {
-    axios.get(`http://localhost:9999/perform/${id}`).then((response) => {
-      setPerform(response.data);
-      console.log("perform", response.data);
-    });
+    axios
+      .get(`http://localhost:9999/perform/${id}`)
+      .then((response) => {
+        setPerform(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const dedeletePerform = () => {
-    axios.delete(`http://localhost:9999/perform/${id}`).then((response) => {
-      console.log("perform", response.data);
-      router.push("/");
-    });
+    axios
+      .delete(`http://localhost:9999/perform/${id}`)
+      .then((response) => {
+        router.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
-    getPerform();
+    if (id) {
+      getPerform();
+    }
   }, [id]);
 
   return (
@@ -40,7 +50,7 @@ const Perform = () => {
       <div>{perform?.troupe}</div>
       <div>{perform?.description}</div>
 
-      {user.role === "admin" && (
+      {user?.role === "admin" && (
         <div>
           <button
             onClick={() => {

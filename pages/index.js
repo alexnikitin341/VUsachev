@@ -11,15 +11,20 @@ const Home = () => {
   const [performs, setPerforms] = useState();
 
   const getPerforms = () => {
-    axios.get("http://localhost:9999/performs").then((response) => {
-      setPerforms(response.data);
-      console.log("performs", response.data);
-    });
+    axios
+      .get("http://localhost:9999/performs")
+      .then((response) => {
+        setPerforms(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
     getPerforms();
   }, []);
+
   return (
     <div className={styles.container}>
       {performs &&
