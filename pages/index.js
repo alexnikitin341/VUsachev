@@ -27,6 +27,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.header}>Список представлений</div> 
       {performs &&
         performs.map((perform) => (
           <div
@@ -46,7 +47,7 @@ const Home = () => {
             router.push(`/add-perform`);
           }}
         >
-          добавить представление
+          Добавить представление
         </button>
       )}
 
@@ -56,7 +57,7 @@ const Home = () => {
           router.push(`/login`);
         }}
       >
-        разлогин
+        Выйти
       </button>
     </div>
   );

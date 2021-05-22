@@ -41,36 +41,52 @@ const Perform = () => {
 
   return (
     <div className={styles.container}>
-      <div>{perform?.name}</div>
-      <div>
-        <img style={{ widows: "100%", height: "100px" }} src={perform?.src} />
-      </div>
-      <div>{perform?.genre}</div>
-      <div>{perform?.director}</div>
-      <div>{perform?.troupe}</div>
-      <div>{perform?.description}</div>
-
-      {user?.role === "admin" && (
+        <div className={styles.name}>{perform?.name}</div>
+      <div className={styles.box}>
+        <div className={styles.img}>
+          <img style={{ width: "100%", height: "100%" }} src={perform?.src} />
+        </div>
         <div>
+          <span className={styles.option}>Жанр: </span>
+          {perform?.genre}
+        </div>
+        <div>
+          <span className={styles.option}>Режисер: </span>
+          {perform?.director}
+        </div>
+        <div>
+          <span className={styles.option}>В ролях: </span>
+          {perform?.troupe}
+        </div>
+        <div>
+          <span className={styles.option}>Описание: </span>
+          {perform?.description}
+        </div>
+      </div>
+      {user?.role === "admin" && (
+        <div className={styles.adminButton}>
           <button
             onClick={() => {
               router.push(`./${id}/change`);
             }}
           >
-            изменить
+            Изменить
           </button>
-          <button onClick={() => dedeletePerform()}>удалить</button>
+          <button onClick={() => dedeletePerform()}>Удалить</button>
         </div>
       )}
 
       <button
+        className={styles.sceneButton}
         onClick={() => {
           router.push(`./${id}/scenes`);
         }}
       >
-        перейти к сценам
+        Перейти к сценам
       </button>
-      <button onClick={() => router.push("/")}>назад</button>
+      <button className={styles.backButton} onClick={() => router.push("/")}>
+        Назад
+      </button>
     </div>
   );
 };

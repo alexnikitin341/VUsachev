@@ -1,4 +1,84 @@
-.container{
-    display: flex;
-    flex-direction: column;
+.container {
+  width: 100vw;
+  height: 100vh;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  /* align-items: center; */
+  background: #414040;
+  padding-top: 20px;
+  color: white;
+  font-size: 18px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
+  height: 75%;
+  overflow: auto;
+}
+
+.name {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: bisque;
+}
+
+.img {
+  width: 100%;
+  height: 200px;
+  min-height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.option {
+  margin-left: 20px;
+  margin-right: 10px;
+  color: bisque;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.adminButton {
+  width: 90%;
+  position: fixed;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.adminButton button {
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #ac9a81;
+  font-size: 16px;
+}
+
+.sceneButton {
+  position: fixed;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #ac9a81;
+  font-size: 16px;
+  bottom: 120px;
+  width: calc(100% - 30px);
+}
+
+.backButton {
+  position: fixed;
+  padding: 10px 15px;
+  border-radius: 8px;
+  background: #ac9a81;
+  font-size: 16px;
+  bottom: 70px;
+  left: 50%;
+  transform: translate(-50%);
+  width: calc(100% - 140px);
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 // import imageToBase64 from "image-to-base64";
 import { useFormContext } from "../contex/context";
 import styles from "../styles/AddPerform.module.css";
+import ChoosePerform from "../components/choosePerform";
 
 const AddPerform = () => {
   const router = useRouter();
@@ -64,82 +65,117 @@ const AddPerform = () => {
     //   });
   };
 
+  const handleBackButton = () => {
+    router.push(`/`);
+  };
+
+  return (
+    <ChoosePerform
+      inputPerform={inputPerform}
+      newScene={newScene}
+      setNewScene={setNewScene}
+      changeState={changeState}
+      saveNewPerfor={saveNewPerform}
+      addNewScene={addNewScene}
+      saveImg={saveImg}
+      handleBackButton={handleBackButton}
+    />
+  );
+
   return (
     <div className={styles.container}>
-      <input
-        value={inputPerform?.name}
-        onChange={changeState}
-        name={"name"}
-        placeholder="name"
-      />
-
-      <div>
-        <img
-          style={{ widows: "100%", height: "100px" }}
-          src={inputPerform?.src}
-        />
-
-        <input onChange={saveImg} accept="image/*" type="file" />
-      </div>
-
-      <input
-        value={inputPerform?.genre}
-        onChange={changeState}
-        name={"genre"}
-        placeholder="genre"
-      />
-      <input
-        value={inputPerform?.director}
-        onChange={changeState}
-        name={"director"}
-        placeholder="director"
-      />
-      <textarea
-        value={inputPerform?.troupe}
-        onChange={changeState}
-        name={"troupe"}
-        placeholder="troupe"
-      />
-      <textarea
-        value={inputPerform?.description}
-        onChange={changeState}
-        name={"description"}
-        placeholder="description"
-      />
-
-      {inputPerform?.scenes?.map((scene) => (
-        <div>
-          {scene.name} <button>удалить</button>
-          {scene.description} <button>удалить</button>
-        </div>
-      ))}
-
-      <div>
+      <div className={styles.box}>
         <input
-          value={newScene.name}
-          placeholder="name"
-          onChange={(e) =>
-            setNewScene((prev) => ({ ...prev, name: e.target.value }))
-          }
+          value={inputPerform?.name}
+          onChange={changeState}
+          name={"name"}
+          placeholder="Введите название представления"
         />
+
+        <div>
+          <img style={{ widows: "100%" }} src={inputPerform?.src} />
+
+          <input
+            onChange={saveImg}
+            accept="image/*"
+            type="file"
+            placeholder="11"
+          />
+        </div>
+
+        <input
+          value={inputPerform?.genre}
+          onChange={changeState}
+          name={"genre"}
+          placeholder="Введите жанр"
+        />
+
+        <input
+          value={inputPerform?.director}
+          onChange={changeState}
+          name={"director"}
+          placeholder="Введите режиссера"
+        />
+
         <textarea
-          placeholder="description"
-          value={newScene.description}
-          onChange={(e) =>
-            setNewScene((prev) => ({ ...prev, description: e.target.value }))
-          }
+          value={inputPerform?.troupe}
+          onChange={changeState}
+          name={"troupe"}
+          placeholder="Введите актеров и роли"
         />
-        <button onClick={() => addNewScene()}>добавить сцену</button>
+
+        <textarea
+          value={inputPerform?.description}
+          onChange={changeState}
+          name={"description"}
+          placeholder="Введите описание"
+        />
+
+        {inputPerform?.scenes?.map((scene) => (
+          <div className={styles.containerScene}>
+            {scene.name}
+            <hr style={{ width: "100%" }} />
+            {scene.description}
+            <button className={styles.deleteButton}>Удалить</button>
+          </div>
+        ))}
+
+        <div className={styles.boxScene}>
+          {/* <div className={styles.boxSceneInput}> */}
+          <input
+            value={newScene.name}
+            placeholder="Введите название сцены"
+            onChange={(e) =>
+              setNewScene((prev) => ({ ...prev, name: e.target.value }))
+            }
+          />
+          <textarea
+            placeholder="Введите описнаие сцены"
+            value={newScene.description}
+            onChange={(e) =>
+              setNewScene((prev) => ({
+                ...prev,
+                description: e.target.value,
+              }))
+            }
+          />
+          {/* </div> */}
+          <button onClick={() => addNewScene()}>Добавить сцену</button>
+        </div>
       </div>
 
       <button
+        className={styles.saveButton}
         onClick={() => {
           saveNewPerform();
         }}
       >
-        сохранить новое представление
+        Сохранить новое представление
       </button>
-      <button onClick={() => router.push(`/`)}>назад</button>
+
+      <button className={styles.backButton} onClick={() => router.push(`/`)}>
+        Назад
+      </button>
     </div>
   );
 };

@@ -57,7 +57,7 @@ const Scenes = () => {
 
   return (
     <div className={styles.container}>
-      <div>{perform?.name}</div>
+      <div className={styles.name}>{perform?.name}</div>
       {perform?.scenes.map((scene) => (
         <Scene
           scene={scene}
@@ -68,11 +68,12 @@ const Scenes = () => {
       ))}
 
       <button
+        className={styles.backButton}
         onClick={() => {
           router.push(`/perform/${id}`);
         }}
       >
-        назад
+        Назад
       </button>
     </div>
   );
