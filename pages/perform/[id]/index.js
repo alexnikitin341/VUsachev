@@ -41,7 +41,7 @@ const Perform = () => {
 
   return (
     <div className={styles.container}>
-        <div className={styles.name}>{perform?.name}</div>
+      <div className={styles.name}>{perform?.name}</div>
       <div className={styles.box}>
         <div className={styles.img}>
           <img style={{ width: "100%", height: "100%" }} src={perform?.src} />

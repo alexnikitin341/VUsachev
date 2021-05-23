@@ -12,17 +12,18 @@ const Login = () => {
   const { setUser } = useFormContext();
 
   const handleClick = () => {
-    if (login === "1" && password === "1") {
-      setUser({ name: "Vadim", role: "user" });
-      return router.push("./");
-    }
     if (login === "admin" && password === "admin") {
       setUser({ name: "admin", role: "admin" });
       return router.push("./");
     }
-    return setError("неверный логин или пароль");
+    return setError("Неверный логин или пароль");
   };
-  
+
+  const handleClickGoToPerforms = () => {
+    setUser({ name: "user", role: "user" });
+    return router.push("./");
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.box}>
@@ -39,8 +40,16 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Пароль"
         />
+
         <button onClick={handleClick} className={styles.button}>
-          Войти
+          Войти как администратор
+        </button>
+
+        <button
+          onClick={handleClickGoToPerforms}
+          className={styles.buttonPerforms}
+        >
+          Перейти к программке
         </button>
       </div>
     </div>
