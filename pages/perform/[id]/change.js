@@ -14,7 +14,7 @@ const ChangePerform = () => {
 
   const getPerform = () => {
     axios
-      .get(`http://localhost:9999/perform/${id}`)
+      .get(`https://usachevserver.herokuapp.com/perform/${id}`)
       .then((response) => {
         setInputPerform(response.data);
         console.log("perform", response.data);
@@ -46,7 +46,7 @@ const ChangePerform = () => {
     delete newPerform._id;
     console.log("---newPerform", newPerform);
     axios
-      .put(`http://localhost:9999/perform/${id}`, { ...newPerform })
+      .put(`https://usachevserver.herokuapp.com/perform/${id}`, { ...newPerform })
       .then((response) => {
         console.log("perform", response.data);
       })

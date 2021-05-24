@@ -12,7 +12,7 @@ const Home = () => {
 
   const getPerforms = () => {
     axios
-      .get("http://localhost:9999/performs")
+      .get("https://usachevserver.herokuapp.com/performs")
       .then((response) => {
         setPerforms(response.data);
       })

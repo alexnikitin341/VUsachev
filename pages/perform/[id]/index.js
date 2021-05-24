@@ -13,7 +13,7 @@ const Perform = () => {
 
   const getPerform = () => {
     axios
-      .get(`http://localhost:9999/perform/${id}`)
+      .get(`https://usachevserver.herokuapp.com/perform/${id}`)
       .then((response) => {
         setPerform(response.data);
       })
@@ -24,7 +24,7 @@ const Perform = () => {
 
   const dedeletePerform = () => {
     axios
-      .delete(`http://localhost:9999/perform/${id}`)
+      .delete(`https://usachevserver.herokuapp.com/perform/${id}`)
       .then((response) => {
         router.push("/");
       })

@@ -31,7 +31,7 @@ const AddPerform = () => {
     }
 
     axios
-      .post("http://localhost:9999/perform", { ...inputPerform })
+      .post("https://usachevserver.herokuapp.com/perform", { ...inputPerform })
       .then((response) => {
         router.push(`/`);
       })

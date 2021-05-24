@@ -243,9 +243,9 @@ MongoClient.connect(
   }
 );
 
-app.listen(9999, (err) => {
+app.listen(process.env.PORT || 9999, (err) => {
   if (err) {
     throw Error(err);
   }
-  console.log("listent 9999...");
+  console.log("listent port..." + (process.env.PORT || 9999));
 });
