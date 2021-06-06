@@ -39,7 +39,7 @@ MongoClient.connect(
     app.post("/perform", jsonParser, (req, res) => {
       performCollection
         .insertOne(req.body)
-        .then((result) => {
+        .then(() => {
           res.json("success add");
         })
         .catch((error) => console.error(error));

@@ -31,8 +31,10 @@ const Scenes = () => {
     setPerform(newPerform);
 
     axios
-      .put(`https://usachevserver.herokuapp.com/perform/${id}`, { ...newPerform })
-      .then((response) => {})
+      .put(`https://usachevserver.herokuapp.com/perform/${id}`, {
+        ...newPerform,
+      })
+      .then(() => {})
       .catch((error) => {
         console.log(error);
       });

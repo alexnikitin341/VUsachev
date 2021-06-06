@@ -32,7 +32,7 @@ const AddPerform = () => {
 
     axios
       .post("https://usachevserver.herokuapp.com/perform", { ...inputPerform })
-      .then((response) => {
+      .then(() => {
         router.push(`/`);
       })
       .catch((error) => {

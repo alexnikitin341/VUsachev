@@ -25,7 +25,7 @@ const Perform = () => {
   const dedeletePerform = () => {
     axios
       .delete(`https://usachevserver.herokuapp.com/perform/${id}`)
-      .then((response) => {
+      .then(() => {
         router.push("/");
       })
       .catch((error) => {

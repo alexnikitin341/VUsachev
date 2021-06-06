@@ -5,6 +5,7 @@
 // })
 // .catch((error) => console.error(error));
 
+//eslint-disable-next-line no-unused-vars
 const mam = {
   name: "Мастер и Маргарита",
   src: "https://sti.ru/wp-content/uploads/2015/05/IVSH0357.jpg",
@@ -65,6 +66,7 @@ const mam = {
   ],
 };
 
+//eslint-disable-next-line no-unused-vars
 const mp = {
   name: "Москва-Петушки",
   src: "https://sti.ru/wp-content/uploads/2015/02/IVNI3697.jpg",
@@ -115,6 +117,7 @@ const mp = {
   ],
 };
 
+//eslint-disable-next-line no-unused-vars
 const r = {
   name: "Ретро",
   src: "https://studfile.net/html/2706/740/html_dPvRkO_Qvk.swtH/img-8_CDEs.jpg",

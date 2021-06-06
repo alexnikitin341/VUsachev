@@ -46,7 +46,9 @@ const ChangePerform = () => {
     delete newPerform._id;
     console.log("---newPerform", newPerform);
     axios
-      .put(`https://usachevserver.herokuapp.com/perform/${id}`, { ...newPerform })
+      .put(`https://usachevserver.herokuapp.com/perform/${id}`, {
+        ...newPerform,
+      })
       .then((response) => {
         console.log("perform", response.data);
       })
@@ -75,8 +77,6 @@ const ChangePerform = () => {
   const handleBackButton = () => {
     router.push(`/`);
   };
-
-  const saveImg = () => {};
 
   return (
     <ChoosePerform
